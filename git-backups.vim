@@ -1,10 +1,11 @@
 " vim_git_backups
+" uses git to maintain backups of your files
 augroup custom_backup
   autocmd!
   autocmd BufWritePost * call BackupCurrentFile()
 augroup end
 
-let s:custom_backup_dir=get(g:, 'vim_git_backups_directory', '~/.vim_git_backups')
+let s:custom_backup_dir=get(g:, 'vim_git_backups_directory', '~/.vim-git-backups')
 
 function! BackupCurrentFile()
   if !isdirectory(expand(s:custom_backup_dir))
