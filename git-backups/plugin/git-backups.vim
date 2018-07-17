@@ -1,5 +1,5 @@
 " vim_git_backups
-" uses git to maintain backups of your files
+" uses git to maintain backups of your files and .viminfo
 augroup custom_backup
   autocmd!
   autocmd BufWritePost * call BackupCurrentFile()
@@ -22,8 +22,10 @@ function! BackupCurrentFile()
   if !isdirectory(expand(file_dir))
     let cmd .= 'mkdir -p ' . file_dir . ';'
   endif
+  let cmd .= 'cp ~/.viminfo ' . s:custom_backup_dir . ';'
   let cmd .= 'cp ' . file . ' ' . backup_file . ';'
   let cmd .= 'cd ' . s:custom_backup_dir . ';'
+  let cmd .= 'git add .viminfo;'
   let cmd .= 'git add ' . backup_file . ';'
   let cmd .= 'git commit -m "Backup - `date`";'
   call job_start(['sh', '-c', cmd])
