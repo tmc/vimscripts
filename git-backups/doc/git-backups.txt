@@ -1,0 +1,11 @@
+*git-backups.txt*	Automatic git backups for all files (and viminfo)
+
+SUMMARY                                                          *git-backups*
+
+CONFIGURATION                                             *git-backups-config*
+
+                                                 *g:vim_git_backups_directory*
+The filesystem path to store backups. >
+  let g:vim_git_backups_directory='~/.vim-git-backups'
+
+vim:tw=78:et:ft=help:norl:
