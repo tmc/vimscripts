@@ -27,7 +27,7 @@ function! BackupCurrentFile()
   let cmd .= 'cd ' . s:custom_backup_dir . ';'
   let cmd .= 'git add .viminfo;'
   let cmd .= 'git add ' . backup_file . ';'
-  let cmd .= 'git commit -m "Backup - `date`";'
+  let cmd .= 'git commit --no-gpg-sign -m "Backup - `date`";'
   call job_start(['sh', '-c', cmd])
 endfunction
 
