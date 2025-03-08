@@ -2,10 +2,39 @@
 
 SUMMARY                                                          *git-backups*
 
+The git-backups plugin automatically creates backups of your files using git.
+It works on both Unix-like systems (Linux, macOS) and Windows. When you save a 
+file, a copy is stored in a git repository, allowing you to access the history
+of your edits.
+
 CONFIGURATION                                             *git-backups-config*
 
                                                  *g:vim_git_backups_directory*
 The filesystem path to store backups. >
   let g:vim_git_backups_directory='~/.vim-git-backups'
+<
+
+                                                *g:vim_git_backups_ignore_paths*
+A list of path patterns to ignore. Any file path matching these patterns will
+not be backed up. The matching is done with Vim's =~ operator against the
+beginning of the full file path. >
+  let g:vim_git_backups_ignore_paths=['/tmp/', '/var/log/']
+<
+
+                                                      *g:vim_git_backups_debug*
+Enable detailed debug logging to help troubleshoot issues. When enabled:
+1. All operations are logged with timestamps
+2. Command stdout/stderr is captured and logged
+3. Command exit codes are logged
+4. All messages are displayed using the |:echom| command and can be reviewed
+   with the |:messages| command
+
+To enable debug logging: >
+  let g:vim_git_backups_debug=1
+<
+
+When troubleshooting issues with paths containing spaces or special characters,
+enable debug logging and examine the messages for errors. This will show the
+exact commands being run and any error output from those commands.
 
 vim:tw=78:et:ft=help:norl:
